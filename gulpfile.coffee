@@ -14,7 +14,7 @@ path = require 'path'
 
 options =
     name: 'chords'
-    version: '0.0.0'
+    version: '0.0.2'
     license: 'MIT'
     summary: 'Chords App'
     description: 'Used to Quickly Generate Guitar Chords'
@@ -33,7 +33,7 @@ gulp.task 'rpm-files', [
   globs = [
     'dist/**/*'
   ]
-  gulp.src(globs, rpm.globOptions)
+  gulp.src(globs)
     .pipe(gulp.dest(path.join(rpm.buildRoot, '/var/www/html/chords')))
     .pipe rpm.files()
 
