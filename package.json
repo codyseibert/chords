@@ -1,0 +1,40 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "description": "testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.4.5",
+    "angular-bootstrap-npm": "^0.13.3",
+    "angular-chart.js": "^0.8.3",
+    "angular-moment": "^0.10.3",
+    "angular-sanitize": "^1.4.5",
+    "angular-scroll": "^0.7.2",
+    "angular-ui-router": "^0.2.15",
+    "backbone": "^1.2.3",
+    "bootstrap": "^3.3.5",
+    "del": "^2.0.1",
+    "guid": "0.0.12",
+    "gulp-coffee": "^2.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-ignore": "^1.2.1",
+    "gulp-jade": "^1.1.0",
+    "gulp-ng-templates": "0.0.6",
+    "gulp-util": "^3.0.6",
+    "jquery": "^2.1.4",
+    "underscore": "^1.8.3",
+    "coffee-script": "~1.10.0"
+  },
+  "devDependencies": {
+    "gulp-browserify": "^0.5.1",
+    "gulp-clean": "^0.3.1",
+    "gulp-livereload": "^3.8.0",
+    "gulp-sass": "^2.0.4"
+  }
+}

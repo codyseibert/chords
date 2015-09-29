@@ -1,0 +1,164 @@
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+
+<style>
+  input {
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .full {
+    max-width: 600px;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .chord {
+    display: inline-block;
+  }
+
+  .wrapper {
+    max-width: 600px;
+    display: inline-block;
+    text-align: center;
+    padding-left: 30px;
+  }
+</style>
+
+<html>
+  <head>
+
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-xs-12 text-center">
+          <div class="full">
+            <input id="chords" value="A B C D E F G Asus Bsus Csus Dsus Esus Fsus Gsus Am Bm Cm Dm Em Fm Gm A5 B5 C5 D5 E5 F5 G5 A7 B7 C7 D7 E7 F7 G7"></input>
+          </div>
+        </div>
+
+        <div class="col-xs-12 text-center">
+          <div class="wrapper">
+            <div id="images"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+
+      $(document).ready(function() {
+
+        LEFT = -120;
+        WIDTH = 110;
+        HEIGHT = 120;
+
+        function getOffsetX(col) {
+          return col * -WIDTH;
+        };
+
+        function getOffsetY(row) {
+          return row * -HEIGHT;
+        }
+
+        function Chord (name, row, col) {
+          this.name = name;
+          this.row = row;
+          this.col = col;
+          this.x = getOffsetX(col);
+          this.y = getOffsetY(row);
+        }
+
+        var ROW_OFFSETS = {
+          '0': -110,
+          '2': -89,
+          '3': -89,
+          '4': -100,
+          '6': -83
+        }
+
+        var CHORDS = {
+          'A': new Chord('a', 0, 0),
+          'B': new Chord('b', 0, 1),
+          'C': new Chord('c', 0, 2),
+          'D': new Chord('d', 0, 3),
+          'E': new Chord('e', 0, 4),
+          'F': new Chord('f', 0, 5),
+          'G': new Chord('g', 0, 6),
+
+          'Asus': new Chord('Asus', 2, 0),
+          'Bsus': new Chord('Bsus', 2, 1),
+          'Csus': new Chord('Csus', 2, 2),
+          'Dsus': new Chord('Dsus', 2, 3),
+          'Esus': new Chord('Esus', 2, 4),
+          'Fsus': new Chord('Fsus', 2, 5),
+          'Gsus': new Chord('Gsus', 2, 6),
+
+          'A5': new Chord('A5', 3, 0),
+          'B5': new Chord('B5', 3, 1),
+          'C5': new Chord('C5', 3, 2),
+          'D5': new Chord('D5', 3, 3),
+          'E5': new Chord('E5', 3, 4),
+          'F5': new Chord('F5', 3, 5),
+          'G5': new Chord('G5', 3, 6),
+
+          'Am': new Chord('Am', 4, 0),
+          'Bm': new Chord('Bm', 4, 1),
+          'Cm': new Chord('Cm', 4, 2),
+          'Dm': new Chord('Dm', 4, 3),
+          'Em': new Chord('Em', 4, 4),
+          'Fm': new Chord('Fm', 4, 5),
+          'Gm': new Chord('Gm', 4, 6),
+
+          'A7': new Chord('A7', 6, 0),
+          'B7': new Chord('B7', 6, 1),
+          'C7': new Chord('C7', 6, 2),
+          'D7': new Chord('D7', 6, 3),
+          'E7': new Chord('E7', 6, 4),
+          'F7': new Chord('F7', 6, 5),
+          'G7': new Chord('G7', 6, 6)
+        };
+
+        var $input = $('#chords');
+        var $chords = $('#images');
+
+        $input.on('keyup', function() {
+          refresh()
+        });
+
+        function refresh () {
+          $chords.empty();
+
+          var input = $input.val().split(' ');
+          for (var i in input) {
+            var chord = input[i]
+
+            def = CHORDS[chord]
+            if (!def) {
+              $br = $("<br>");
+              $chords.append($br);
+            } else {
+              $chord = $('<div></div>');
+              $chord.addClass('chord');
+              var left = def.x + LEFT;
+              var top = def.y + ROW_OFFSETS[def.row];
+              $chord.css("background", "url(chords.jpg) " + left + "px " + top + "px");
+              $chord.css("width", WIDTH + "px");
+              $chord.css("height", HEIGHT + "px");
+              $chord.css("min-height", "1px");
+              $chords.append($chord);
+            }
+          }
+        };
+        refresh();
+      })
+    </script>
+  </body>
+</html>
