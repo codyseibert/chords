@@ -11,10 +11,21 @@ connect = require 'gulp-connect'
 brass = require 'gulp-brass'
 rimraf = require 'rimraf'
 path = require 'path'
+fs = require 'fs'
+semver = require 'semver'
+
+getPackageJson = ->
+  JSON.parse fs.readFileSync('./package.json', 'utf8')
+
+json = getPackageJson()
+version = json.version
+major = semver.major version
+minor = semver.minor version
+patch = process.env.BUILD_NUMBER or semver.patch version
 
 options =
     name: 'chords'
-    version: '0.0.2'
+    version: "#{major}.#{minor}.#{patch}"
     license: 'MIT'
     summary: 'Chords App'
     description: 'Used to Quickly Generate Guitar Chords'
